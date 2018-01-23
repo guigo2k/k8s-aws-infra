@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 TERRAFORM="$(command -v terraform)"
-SHORTNAME="$1"
+CLUSTER_SHORTNAME="$1"
 
 echo
 
@@ -10,9 +10,9 @@ if [[ -z ${TERRAFORM} ]]; then
   exit 1
 fi
 
-if [[ -z ${SHORTNAME} ]]; then
-  echo -en "\x1B[1;1mCLUSTER SHORTNAME: \x1B[0m"
-  read SHORTNAME
+if [[ -z ${CLUSTER_SHORTNAME} ]]; then
+  echo -en "\x1B[1;1mCLUSTER_SHORTNAME: \x1B[0m"
+  read CLUSTER_SHORTNAME
 fi
 
 if [[ -z ${AWS_ACCESS_KEY_ID} ]]; then
@@ -29,7 +29,7 @@ echo -e "\n\x1B[1;1mReading infra state... \x1B[0m(can take few minutes)"
 export SSH_KEY="~/.ssh/symphony_devops.pub"
 export VPC_ID="$(terraform output vpc_id)"
 export HOSTED_ZONE="$(terraform output vpc_name)"
-export CLUSTER_NAME="${SHORTNAME}.$(terraform output vpc_name)"
+export CLUSTER_NAME="${CLUSTER_SHORTNAME}.$(terraform output vpc_name)"
 export ZONES=$(terraform output -json availability_zones | jq -r '.value|join(",")')
 export KOPS_STATE_STORE="$(terraform output state_store)"
 

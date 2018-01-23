@@ -1,0 +1,16 @@
+terraform {
+  backend "s3" {
+    region = "${region}"
+    bucket = "${bucket}"
+    key    = "${key}"
+  }
+}
+
+data "terraform_remote_state" "network" {
+  backend = "s3"
+  config {
+    region = "${region}"
+    bucket = "${bucket}"
+    key    = "${key}"
+  }
+}

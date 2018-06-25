@@ -11,7 +11,7 @@ export AWS_SECRET_ACCESS_KEY="<aws_secret_access_key>"
 
 With that in place, let's export the variables we are going to use with [Kops](https://github.com/kubernetes/kops).
 ```bash
-export SSH_KEY="~/.ssh/symphony_devops.pub"
+export SSH_KEY="~/.ssh/id_rsa.pub"
 export VPC_ID="$(terraform output vpc_id)"
 export HOSTED_ZONE="$(terraform output vpc_name)"
 export CLUSTER_NAME="my-cluster.$(terraform output vpc_name)"

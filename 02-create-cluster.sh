@@ -26,7 +26,7 @@ if [[ -z ${AWS_SECRET_ACCESS_KEY} ]]; then
 fi
 
 echo -e "\n\x1B[1;1mReading infra state... \x1B[0m(can take few minutes)"
-export SSH_KEY="~/.ssh/symphony_devops.pub"
+export SSH_KEY="~/.ssh/id_rsa.pub"
 export VPC_ID="$(terraform output vpc_id)"
 export HOSTED_ZONE="$(terraform output vpc_name)"
 export CLUSTER_NAME="${CLUSTER_SHORTNAME}.$(terraform output vpc_name)"
